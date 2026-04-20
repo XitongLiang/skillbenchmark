@@ -1,0 +1,36 @@
+openclaw:
+  ws_url: "ws://localhost:18789"
+  recv_timeout: 600  # seconds per task
+  agent: "main"     # openclaw agent id (openclaw agent --agent <id>)
+
+skillsbench:
+  root: "../skillsbench"
+  task_set: "tasks-no-skills"  # tasks / tasks-no-skills
+
+execution:
+  workspace_base: "../workspace"
+  interval_sec: 5
+  timeout_sec: 600
+  max_retries: 1
+
+verification:
+  model: "fireworks_ai/accounts/fireworks/models/glm-5"
+  harbor_env:
+    FIREWORKS_API_KEY: "fw_6AtiL5tiqhDebXKiWV8acU"
+
+tasks:
+  filter:
+    difficulty: null       # easy / medium / hard / null=all
+    category: null
+    include: []            # empty = all
+    exclude:
+      - video-tutorial-indexer          # 20GB storage
+      - mhc-layer-impl                 # GPU required
+      - speaker-diarization-subtitles   # audio model
+      - pg-essay-to-audiobook           # TTS API
+      - multilingual-video-dubbing      # TTS API
+      - citation-check                  # external API
+
+experiment:
+  group: "C"        # A / B / C / D
+  iterations: 3     # Group D iteration count
